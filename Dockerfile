@@ -36,7 +36,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 COPY php.ini /usr/local/etc/php
 
-RUN export PATH="/var/www/html/node_modules/.bin:$PATH"
+ENV PATH /var/www/html/node_modules/.bin:$PATH
 
 WORKDIR /var/www/html
 ENV NODE_PATH /var/www/html/node_modules
