@@ -9,7 +9,9 @@ RUN apt-get update && apt-get install -y \
   libpq-dev \
   libxml2-dev \
   libreoffice-writer \
+  mailutils \
   pdftk \
+  ssmtp \
   zip
 
 RUN  ln -s /usr/lib/x86_64-linux-gnu/libldap.so /usr/lib/libldap.so \
@@ -19,6 +21,7 @@ RUN docker-php-ext-install -j$(nproc) \
   curl \
   json \
   ldap \
+  mail \
   pgsql \
   soap \
   xml
@@ -30,14 +33,11 @@ RUN curl -SLO "http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x
   && tar -xzf "node-v$NODE_VERSION-linux-x64.tar.gz" -C /usr/local --strip-components=1 \
   && rm "node-v$NODE_VERSION-linux-x64.tar.gz"
 
-RUN npm install -g node-static \
-  && npm install -g pm2 \
-  && npm install -g socket.io \
-  && npm install -g pg
-
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 COPY php.ini /usr/local/etc/php
 
+RUN export PATH="/var/www/html/node_modules/.bin:$PATH"
+
 WORKDIR /var/www/html
-ENV NODE_PATH /usr/local/lib/node_modules
+ENV NODE_PATH /var/www/html/node_modules
