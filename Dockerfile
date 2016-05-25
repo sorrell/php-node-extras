@@ -21,7 +21,6 @@ RUN docker-php-ext-install -j$(nproc) \
   curl \
   json \
   ldap \
-  mail \
   pgsql \
   soap \
   xml
