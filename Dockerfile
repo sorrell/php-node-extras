@@ -25,7 +25,7 @@ RUN docker-php-ext-install -j$(nproc) \
   soap \
   xml
 
-ENV NODE_VERSION 4.4.3
+ENV NODE_VERSION 4.4.5
 
 RUN curl -SLO "http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz" \
   && curl -SLO "http://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc" \
@@ -36,7 +36,5 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 COPY php.ini /usr/local/etc/php
 
-ENV PATH /var/www/html/node_modules/.bin:$PATH
-
 WORKDIR /var/www/html
-ENV NODE_PATH /var/www/html/node_modules
+ENV NODE_PATH /usr/local/lib/node_modules
