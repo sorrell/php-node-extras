@@ -23,6 +23,7 @@ RUN docker-php-ext-install -j$(nproc) \
   ldap \
   pgsql \
   soap \
+  sockets \
   xml
 
 ENV NODE_VERSION 4.4.5
