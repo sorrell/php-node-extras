@@ -9,9 +9,7 @@ RUN apt-get update && apt-get install -y \
   libpq-dev \
   libxml2-dev \
   libreoffice-writer \
-  mailutils \
   pdftk \
-  ssmtp \
   zip
 
 RUN  ln -s /usr/lib/x86_64-linux-gnu/libldap.so /usr/lib/libldap.so \
@@ -26,7 +24,7 @@ RUN docker-php-ext-install -j$(nproc) \
   sockets \
   xml
 
-ENV NODE_VERSION 4.4.5
+ENV NODE_VERSION 4.4.6
 
 RUN curl -SLO "http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz" \
   && curl -SLO "http://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc" \
